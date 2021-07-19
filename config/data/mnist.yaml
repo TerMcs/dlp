@@ -1,0 +1,2 @@
+_target_: dlp.data.dataloader.get_mnist
+batch_size: 64

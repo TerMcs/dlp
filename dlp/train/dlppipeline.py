@@ -6,6 +6,7 @@ import hydra
 from omegaconf import DictConfig, OmegaConf
 
 from dlp.data.dataloader import get_mnist, get_cifar10
+from dlp.utils.common import init_obj
 
 
 def train_loop(dataloader, model, loss_fn, optimizer):
@@ -57,7 +58,6 @@ def test_loop(dataloader, model, loss_fn):
     correct /= size
     print(f"Test Error: \n Accuracy: {(100*correct):>0.1f}%, Average loss: {test_loss:>8f} \n")
 
-
 def train_model(cfg: DictConfig):
     model = hydra.utils.instantiate(cfg.model)
 
@@ -65,11 +65,8 @@ def train_model(cfg: DictConfig):
 
     #optimizer = hydra.utils.instantiate(cfg.optimizer)
     optimizer = torch.optim.Adam(model.parameters(), lr=cfg.learning_rate)
-    #opt_params = dict(cfg.optimizer)
-    #opt_params['params'] = model.parameters()
-    #optimizer = init_obj(cfg.optimizer, opt_params)
 
-    train_data, test_data = get_cifar10(batch_size=cfg.batch_size)
+    train_data, test_data = hydra.utils.instantiate(cfg.data)
 
     for epoch in range(cfg.num_epochs):
         print(f"Epoch {epoch + 1}\n-------------------------------")
