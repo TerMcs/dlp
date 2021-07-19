@@ -80,5 +80,3 @@ def train_model(cfg: DictConfig):
         #update_lr(optimizer, curr_lr)
 
         test_loop(test_data, model, loss_fn)
-
-

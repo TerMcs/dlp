@@ -2,22 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da3023ea-022b-4ce2-905a-42c4922aac23" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/configs.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/model/fc.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/model/resnet_basic.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/data/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/data/dataloader.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/models/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/models/fullyconnected.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/models/preresnet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/models/resnet.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/models/resnet_basic.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/train/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/train/pipeline.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dlp/train/run.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dlp/train/pipeline.py" beforeDir="false" afterPath="$PROJECT_DIR$/dlp/train/dlppipeline.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dlp/train/run.py" beforeDir="false" afterPath="$PROJECT_DIR$/dlp/train/run.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1626684493658</updated>
       <workItem from="1626684495018" duration="308000" />
-      <workItem from="1626684813926" duration="9687000" />
+      <workItem from="1626684813926" duration="9953000" />
     </task>
     <servers />
   </component>
