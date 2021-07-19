@@ -1,2 +1,2 @@
 _target_: dlp.models.resnet.resnet
-depth: 44
+depth: 20

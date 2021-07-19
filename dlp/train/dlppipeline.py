@@ -69,7 +69,7 @@ def train_model(cfg: DictConfig):
     #opt_params['params'] = model.parameters()
     #optimizer = init_obj(cfg.optimizer, opt_params)
 
-    train_data, test_data = get_mnist(batch_size=cfg.batch_size)
+    train_data, test_data = get_cifar10(batch_size=cfg.batch_size)
 
     for epoch in range(cfg.num_epochs):
         print(f"Epoch {epoch + 1}\n-------------------------------")
