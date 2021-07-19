@@ -1,0 +1,2 @@
+_target_: models.resnet_basic.ResNetBasic
+num_classes: 10
