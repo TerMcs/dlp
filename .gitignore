@@ -1,5 +1,5 @@
 #TMcS:
-dlp/train/outputs
+outputs/
 *.idea
 
 # Byte-compiled / optimized / DLL files

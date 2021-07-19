@@ -5,7 +5,7 @@ import hydra
 
 from omegaconf import DictConfig, OmegaConf
 
-from dlp.data.dataloader import get_mnist
+from dlp.data.dataloader import get_mnist, get_cifar10
 
 
 def train_loop(dataloader, model, loss_fn, optimizer):
