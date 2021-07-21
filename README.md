@@ -4,13 +4,13 @@ Further deep learning practice.
 ## Example A: 
 
 ```
-:~/dlp$ python run.py model=fc 
-                      model.hidden_size=256
-                      data=mnist 
-                      data.batch_size=128
-                      optimizer.cls=torch.optim.Adam
-                      optimizer.params.lr=0.001
-                      num_epochs=2
+python run.py model=fc 
+              model.hidden_size=256
+              data=mnist 
+              data.batch_size=128
+              optimizer.cls=torch.optim.Adam
+              optimizer.params.lr=0.001
+              num_epochs=2
 ```
 
 ### Hydra record:
@@ -35,13 +35,13 @@ num_epochs: 2
 ## Example B:
 
 ```
-:~/dlp$ python run.py model=resnet
-                      model.depth=56
-                      data=cifar10 
-                      data.batch_size=64
-                      optimizer.cls=torch.optim.SGD
-                      optimizer.params.lr=0.01
-                      num_epochs=10
+python run.py model=resnet
+              model.depth=56
+              data=cifar10 
+              data.batch_size=64
+              optimizer.cls=torch.optim.SGD
+              optimizer.params.lr=0.01
+              num_epochs=10
 ```
 
 ### Hydar record:
