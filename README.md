@@ -21,13 +21,13 @@ model:
 &nbsp;&nbsp;hidden_size: 256  
 &nbsp;&nbsp;num_classes: 10  
 data:  
-  _target_: dlp.data.dataloader.get_mnist  
-  batch_size: 128  
+&nbsp;&nbsp;_target_: dlp.data.dataloader.get_mnist  
+&nbsp;&nbsp;batch_size: 128  
 optimizer:  
-  cls: torch.optim.Adam  
-  params:  
-    params: null  
-    lr: 0.001  
+&nbsp;&nbsp;cls: torch.optim.Adam  
+&nbsp;&nbsp;params:  
+&nbsp;&nbsp;&nbsp;&nbsp;params: null  
+&nbsp;&nbsp;&nbsp;&nbsp;lr: 0.001  
 seed: 12345  
 num_epochs: 2  
 
@@ -47,16 +47,16 @@ num_epochs: 2
 ### Hydar record:
 
 model:  
-  _target_: dlp.models.resnet.resnet  
-  depth: 56  
+&nbsp;&nbsp;_target_: dlp.models.resnet.resnet  
+&nbsp;&nbsp;depth: 56  
 data:  
-  _target_: dlp.data.dataloader.get_cifar10  
-  batch_size: 50  
+&nbsp;&nbsp;_target_: dlp.data.dataloader.get_cifar10  
+&nbsp;&nbsp;batch_size: 50  
 optimizer:  
-  cls: torch.optim.SGD  
-  params:  
-    params: null  
-    lr: 0.01  
+&nbsp;&nbsp;cls: torch.optim.SGD  
+&nbsp;&nbsp;params:  
+&nbsp;&nbsp;&nbsp;&nbsp;params: null  
+&nbsp;&nbsp;&nbsp;&nbsp;lr: 0.01  
 seed: 12345  
 num_epochs: 10  
 
