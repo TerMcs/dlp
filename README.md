@@ -16,10 +16,10 @@ Further deep learning practice.
 ### Hydra record:
 
 model:  
-  _target_: dlp.models.fullyconnected.FullyConnected  
-  input_size: 784  
-  hidden_size: 256  
-  num_classes: 10  
+&nbsp;&nbsp;_target_: dlp.models.fullyconnected.FullyConnected  
+&nbsp;&nbsp;input_size: 784  
+&nbsp;&nbsp;hidden_size: 256  
+&nbsp;&nbsp;num_classes: 10  
 data:  
   _target_: dlp.data.dataloader.get_mnist  
   batch_size: 128  
