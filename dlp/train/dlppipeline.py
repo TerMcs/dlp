@@ -1,11 +1,8 @@
 import torch
-import numpy as np
-import random
 import hydra
 
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig
 
-from dlp.data.dataloader import get_mnist, get_cifar10
 from dlp.utils.common import init_obj
 
 
@@ -63,8 +60,10 @@ def train_model(cfg: DictConfig):
 
     loss_fn = torch.nn.CrossEntropyLoss()
 
-    #optimizer = hydra.utils.instantiate(cfg.optimizer)
-    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.learning_rate)
+    # Select optimizer
+    opt_params = dict(cfg.optimizer.params)
+    opt_params['params'] = model.parameters()
+    optimizer = init_obj(cfg.optimizer.cls, opt_params)
 
     train_data, test_data = hydra.utils.instantiate(cfg.data)
 
