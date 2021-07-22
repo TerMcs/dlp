@@ -44,7 +44,7 @@ python run.py model=resnet
               num_epochs=10
 ```
 
-### Hydar record:
+### Hydra record:
 
 model:  
 &nbsp;&nbsp;_target_: dlp.models.resnet.resnet  
