@@ -1,4 +1,5 @@
 import importlib
+import logging
 
 
 def init_obj_cls(string_def):
@@ -12,3 +13,11 @@ def init_obj(string_def, params):
     if params is None:
         params = {}
     return obj_cls(**params)
+
+def get_logger(name=__name__, level=logging.INFO) -> logging.Logger:
+
+    logger = logging.getLogger(name)
+    logger.setLevel(level)
+
+    return logger
+
