@@ -3,6 +3,8 @@ import hydra
 import socket
 from datetime import datetime
 from pathlib import Path
+import psutil
+import platform
 
 
 from omegaconf import DictConfig
@@ -102,3 +104,12 @@ def train_model(cfg: DictConfig):
         test_loop(test_data, model, loss_fn)
         #tb.add_scalar("Test loss per epoch", test_loss, global_step = epoch)
         #tb.add_scalar("Test accuracy per epoch", correct, global_step = epoch)
+
+    uname = platform.uname()
+    log.info(f"System: {uname.system}")
+    log.info(f"Node Name: {uname.node}")
+    log.info(f"Release: {uname.release}")
+    log.info(f"Version: {uname.version}")
+    log.info(f"Processor: {uname.processor}")
+    svmem = psutil.virtual_memory()
+    log.info(f"Total memory: {svmem.total}")
