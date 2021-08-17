@@ -13,6 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 from dlp.utils.common import init_obj, get_logger
 
 log = get_logger(__name__)
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 
 #now = datetime.now()
 #dt_string = now.strftime("%d_%m_%Y-%H_%M_%S")
@@ -29,6 +30,10 @@ def train_loop(dataloader, model, loss_fn, optimizer):
     accuracy = []
 
     for batch, (images, labels) in enumerate(dataloader):
+        images = images.to(device)
+        labels = labels.to(device) # this works for first epoch then goes back to CPU -
+                                   # this is an issue with the strcuture of the code
+
         # Forward pass:
         pred = model(images)
         loss = loss_fn(pred, labels)
@@ -77,7 +82,10 @@ def train_model(cfg: DictConfig):
     log.info(f'Host: {socket.gethostname()}')
     #tb = SummaryWriter("../../../runs")
 
+    log.info('Using {} device'.format(device))
+
     model = hydra.utils.instantiate(cfg.model)
+    model = model.to(device)
 
     log.info(f'Initialized {cfg.model}')
 
@@ -95,15 +103,15 @@ def train_model(cfg: DictConfig):
         loss, accuracy = train_loop(train_data, model, loss_fn, optimizer)
 
         # Tensorboard:
-        tb.add_scalar("Training loss per epoch", loss, global_step = epoch)
-        tb.add_scalar("Training accuracy per epoch", accuracy, global_step = epoch)
+        #tb.add_scalar("Training loss per epoch", loss, global_step = epoch)
+        #tb.add_scalar("Training accuracy per epoch", accuracy, global_step = epoch)
     #if (epoch + 1) % 20 == 0:
         #curr_lr /= 3
         #update_lr(optimizer, curr_lr)
 
         test_loop(test_data, model, loss_fn)
-        #tb.add_scalar("Test loss per epoch", test_loss, global_step = epoch)
-        #tb.add_scalar("Test accuracy per epoch", correct, global_step = epoch)
+        #tb.add_scalar("Test loss per epoch", loss, global_step = epoch)
+        #tb.add_scalar("Test accuracy per epoch", accuracy, global_step = epoch)
 
     uname = platform.uname()
     log.info(f"System: {uname.system}")

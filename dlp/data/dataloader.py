@@ -6,6 +6,7 @@ import torchvision.transforms as transforms
 from torch.utils.data import Dataset, DataLoader
 from torchvision import datasets
 
+device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 def get_mnist(batch_size):
     train_dataset = datasets.MNIST(root='../../data',
