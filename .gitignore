@@ -1,6 +1,7 @@
 #TMcS:
 outputs/
 runs/
+datasets/
 *.idea
 
 # Byte-compiled / optimized / DLL files

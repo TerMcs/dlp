@@ -1,10 +1,10 @@
 import torch
 import hydra
 import socket
-from datetime import datetime
-from pathlib import Path
-import psutil
-import platform
+# from datetime import datetime
+# from pathlib import Path
+# import psutil
+# import platform
 
 
 from omegaconf import DictConfig
@@ -13,7 +13,7 @@ from torch.utils.tensorboard import SummaryWriter
 from dlp.utils.common import init_obj, get_logger
 
 log = get_logger(__name__)
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0') #if torch.cuda.is_available() else 'cpu')
 
 #now = datetime.now()
 #dt_string = now.strftime("%d_%m_%Y-%H_%M_%S")
@@ -69,6 +69,8 @@ def test_loop(dataloader, model, loss_fn):
 
     with torch.no_grad():
         for images, labels in dataloader:
+            images = images.to(device)
+            labels = labels.to(device)
             pred = model(images)
             test_loss += loss_fn(pred, labels).item()
             correct += (pred.argmax(1) == labels).type(torch.float).sum().item()
@@ -89,7 +91,8 @@ def train_model(cfg: DictConfig):
 
     log.info(f'Initialized {cfg.model}')
 
-    loss_fn = torch.nn.CrossEntropyLoss()
+    #loss_fn = torch.nn.CrossEntropyLoss()
+    loss_fn = torch.nn.MSELoss()
 
     # Select optimizer
     opt_params = dict(cfg.optimizer.params)
@@ -100,7 +103,8 @@ def train_model(cfg: DictConfig):
 
     for epoch in range(cfg.num_epochs):
         log.info(f"Epoch {epoch + 1}\n-------------------------------")
-        loss, accuracy = train_loop(train_data, model, loss_fn, optimizer)
+        # loss, accuracy = \
+        train_loop(train_data, model, loss_fn, optimizer)
 
         # Tensorboard:
         #tb.add_scalar("Training loss per epoch", loss, global_step = epoch)
@@ -110,14 +114,14 @@ def train_model(cfg: DictConfig):
         #update_lr(optimizer, curr_lr)
 
         test_loop(test_data, model, loss_fn)
-        #tb.add_scalar("Test loss per epoch", loss, global_step = epoch)
-        #tb.add_scalar("Test accuracy per epoch", accuracy, global_step = epoch)
+        # tb.add_scalar("Test loss per epoch", loss, global_step = epoch)
+        # tb.add_scalar("Test accuracy per epoch", accuracy, global_step = epoch)
 
-    uname = platform.uname()
-    log.info(f"System: {uname.system}")
-    log.info(f"Node Name: {uname.node}")
-    log.info(f"Release: {uname.release}")
-    log.info(f"Version: {uname.version}")
-    log.info(f"Processor: {uname.processor}")
-    svmem = psutil.virtual_memory()
-    log.info(f"Total memory: {svmem.total}")
+    # uname = platform.uname()
+    # log.info(f"System: {uname.system}")
+    # log.info(f"Node Name: {uname.node}")
+    # log.info(f"Release: {uname.release}")
+    # log.info(f"Version: {uname.version}")
+    # log.info(f"Processor: {uname.processor}")
+    #svmem = psutil.virtual_memory()
+    #log.info(f"Total memory: {svmem.total}")
